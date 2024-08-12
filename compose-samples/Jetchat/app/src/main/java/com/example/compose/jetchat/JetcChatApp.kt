@@ -25,6 +25,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.compose.jetchat.profile.ProfileScreen
+import com.example.compose.jetchat.profile.ProfileViewModel
 
 
 enum class JetChatScreen(@StringRes val title: Int) {
@@ -35,13 +37,9 @@ enum class JetChatScreen(@StringRes val title: Int) {
 
 @Composable
 fun JetChatApp(
-    //viewModel: OrderViewModel = viewModel(),
+    viewModel: ProfileViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
 ) {
-
-
-
-
     Scaffold(
     ) { innerPadding ->
         //val uiState by viewModel.uiState.collectAsState()
@@ -52,6 +50,7 @@ fun JetChatApp(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = JetChatScreen.Conversation.name) {
+                ProfileScreen(userData = )
 //                StartOrderScreen(
 //                    quantityOptions = DataSource.quantityOptions,
 //                    onNextButtonClicked = {

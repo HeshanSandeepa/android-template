@@ -18,6 +18,7 @@ package com.example.compose.jetchat
 
 import android.os.Bundle
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.compose.jetchat.components.JetchatDrawer
 import com.example.compose.jetchat.databinding.ContentMainBinding
+import com.example.compose.jetchat.theme.JetchatTheme
 import kotlinx.coroutines.launch
 
 /**
@@ -47,59 +49,67 @@ class NavActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { _, insets -> insets }
-
-        setContentView(
-            ComposeView(this).apply {
-                consumeWindowInsets = false
-                setContent {
-                    val drawerState = rememberDrawerState(initialValue = Closed)
-                    val drawerOpen by viewModel.drawerShouldBeOpened
-                        .collectAsStateWithLifecycle()
-
-                    if (drawerOpen) {
-                        // Open drawer and reset state in VM.
-                        LaunchedEffect(Unit) {
-                            // wrap in try-finally to handle interruption whiles opening drawer
-                            try {
-                                drawerState.open()
-                            } finally {
-                                viewModel.resetOpenDrawerAction()
-                            }
-                        }
-                    }
-
-                    // Intercepts back navigation when the drawer is open
-                    val scope = rememberCoroutineScope()
-                    if (drawerState.isOpen) {
-                        BackHandler {
-                            scope.launch {
-                                drawerState.close()
-                            }
-                        }
-                    }
-
-                    JetchatDrawer(
-                        drawerState = drawerState,
-                        onChatClicked = {
-                            findNavController().popBackStack(R.id.nav_home, false)
-                            scope.launch {
-                                drawerState.close()
-                            }
-                        },
-                        onProfileClicked = {
-                            val bundle = bundleOf("userId" to it)
-                            findNavController().navigate(R.id.nav_profile, bundle)
-                            scope.launch {
-                                drawerState.close()
-                            }
-                        }
-                    ) {
-                        AndroidViewBinding(ContentMainBinding::inflate)
-                    }
-                }
+        setContent {
+            JetchatTheme {
+                JetChatApp()
             }
-        )
+        }
+
+//        enableEdgeToEdge()
+//        super.onCreate(savedInstanceState)
+//        ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { _, insets -> insets }
+//
+//        setContentView(
+//            ComposeView(this).apply {
+//                consumeWindowInsets = false
+//                setContent {
+//                    val drawerState = rememberDrawerState(initialValue = Closed)
+//                    val drawerOpen by viewModel.drawerShouldBeOpened
+//                        .collectAsStateWithLifecycle()
+//
+//                    if (drawerOpen) {
+//                        // Open drawer and reset state in VM.
+//                        LaunchedEffect(Unit) {
+//                            // wrap in try-finally to handle interruption whiles opening drawer
+//                            try {
+//                                drawerState.open()
+//                            } finally {
+//                                viewModel.resetOpenDrawerAction()
+//                            }
+//                        }
+//                    }
+//
+//                    // Intercepts back navigation when the drawer is open
+//                    val scope = rememberCoroutineScope()
+//                    if (drawerState.isOpen) {
+//                        BackHandler {
+//                            scope.launch {
+//                                drawerState.close()
+//                            }
+//                        }
+//                    }
+//
+//                    JetchatDrawer(
+//                        drawerState = drawerState,
+//                        onChatClicked = {
+//                            findNavController().popBackStack(R.id.nav_home, false)
+//                            scope.launch {
+//                                drawerState.close()
+//                            }
+//                        },
+//                        onProfileClicked = {
+//                            val bundle = bundleOf("userId" to it)
+//                            findNavController().navigate(R.id.nav_profile, bundle)
+//                            scope.launch {
+//                                drawerState.close()
+//                            }
+//                        }
+//                    ) {
+//                        AndroidViewBinding(ContentMainBinding::inflate)
+//                    }
+//                }
+//            }
+//        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
