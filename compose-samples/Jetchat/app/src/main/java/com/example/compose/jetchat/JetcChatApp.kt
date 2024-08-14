@@ -27,6 +27,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.jetchat.profile.ProfileScreen
 import com.example.compose.jetchat.profile.ProfileViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.compose.jetchat.conversation.ConversationScreen
 
 
 enum class JetChatScreen(@StringRes val title: Int) {
@@ -50,7 +52,7 @@ fun JetChatApp(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = JetChatScreen.Conversation.name) {
-                ProfileScreen(userData = )
+                ProfileScreen(userData = viewModel.userData.value!!)
 //                StartOrderScreen(
 //                    quantityOptions = DataSource.quantityOptions,
 //                    onNextButtonClicked = {
@@ -64,6 +66,7 @@ fun JetChatApp(
             }
             composable(route = JetChatScreen.Profile.name) {
                 val context = LocalContext.current
+                ConversationScreen(uiState = , navigateToProfile = )
 //                SelectOptionScreen(
 //                    subtotal = uiState.price,
 //                    onNextButtonClicked = { navController.navigate(JetChatScreen.Pickup.name) },

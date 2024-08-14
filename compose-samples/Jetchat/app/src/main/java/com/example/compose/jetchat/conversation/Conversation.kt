@@ -97,7 +97,7 @@ import kotlinx.coroutines.launch
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConversationContent(
+fun ConversationScreen(
     uiState: ConversationUiState,
     navigateToProfile: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -488,7 +488,7 @@ fun ClickableMessage(
 @Composable
 fun ConversationPreview() {
     JetchatTheme {
-        ConversationContent(
+        ConversationScreen(
             uiState = exampleUiState,
             navigateToProfile = { }
         )

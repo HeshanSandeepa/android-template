@@ -72,7 +72,6 @@ import com.example.compose.jetchat.data.colleagueProfile
 import com.example.compose.jetchat.data.meProfile
 import com.example.compose.jetchat.theme.JetchatTheme
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun ProfileScreen(
     userData: ProfileScreenState,
