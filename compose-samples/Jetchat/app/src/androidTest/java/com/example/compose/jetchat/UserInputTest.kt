@@ -32,7 +32,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.espresso.Espresso
-import com.example.compose.jetchat.conversation.ConversationContent
+import com.example.compose.jetchat.conversation.ConversationScreen
 import com.example.compose.jetchat.conversation.KeyboardShownKey
 import com.example.compose.jetchat.data.exampleUiState
 import com.example.compose.jetchat.theme.JetchatTheme
@@ -56,7 +56,7 @@ class UserInputTest {
         // Launch the conversation screen
         composeTestRule.setContent {
             JetchatTheme {
-                ConversationContent(
+                ConversationScreen(
                     uiState = exampleUiState,
                     navigateToProfile = { },
                     onNavIconPressed = { }

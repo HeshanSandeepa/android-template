@@ -45,7 +45,7 @@ class ConversationFragment : Fragment() {
 
         setContent {
             JetchatTheme {
-                ConversationContent(
+                ConversationScreen(
                     uiState = exampleUiState,
                     navigateToProfile = { user ->
                         // Click callback

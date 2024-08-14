@@ -27,7 +27,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipe
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.compose.jetchat.conversation.ConversationContent
+import com.example.compose.jetchat.conversation.ConversationScreen
 import com.example.compose.jetchat.conversation.ConversationTestTag
 import com.example.compose.jetchat.conversation.ConversationUiState
 import com.example.compose.jetchat.data.exampleUiState
@@ -52,7 +52,7 @@ class ConversationTest {
         // Launch the conversation screen
         composeTestRule.setContent {
             JetchatTheme(isDarkTheme = themeIsDark.collectAsStateWithLifecycle(false).value) {
-                ConversationContent(
+                ConversationScreen(
                     uiState = conversationTestUiState,
                     navigateToProfile = { },
                     onNavIconPressed = { }
