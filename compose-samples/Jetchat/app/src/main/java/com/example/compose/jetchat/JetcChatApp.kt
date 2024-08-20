@@ -19,64 +19,48 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.core.os.bundleOf
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.compose.jetchat.conversation.ConversationScreen
+import com.example.compose.jetchat.data.exampleUiState
 import com.example.compose.jetchat.profile.ProfileScreen
 import com.example.compose.jetchat.profile.ProfileViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.compose.jetchat.conversation.ConversationScreen
-
 
 enum class JetChatScreen(@StringRes val title: Int) {
     Conversation(title = R.string.app_name),
     Profile(title = R.string.choose_flavor),
 }
 
-
 @Composable
 fun JetChatApp(
     viewModel: ProfileViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
 ) {
-    Scaffold(
-    ) { innerPadding ->
-        //val uiState by viewModel.uiState.collectAsState()
-
+    Scaffold { innerPadding ->
         NavHost(
             navController = navController,
             startDestination = JetChatScreen.Conversation.name,
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = JetChatScreen.Conversation.name) {
-                ProfileScreen(userData = viewModel.userData.value!!)
-//                StartOrderScreen(
-//                    quantityOptions = DataSource.quantityOptions,
-//                    onNextButtonClicked = {
-//                        viewModel.setQuantity(it)
-//                        navController.navigate(JetChatScreen.Profile.name)
-//                    },
-//                    modifier = Modifier
-//                        .fillMaxSize()
-//                        .padding(dimensionResource(R.dimen.padding_medium))
-//                )
+                val x = viewModel.userData.observeAsState().value
+                ProfileScreen(userData = viewModel.userData.observeAsState().value!!)
             }
             composable(route = JetChatScreen.Profile.name) {
-                val context = LocalContext.current
-                ConversationScreen(uiState = , navigateToProfile = )
-//                SelectOptionScreen(
-//                    subtotal = uiState.price,
-//                    onNextButtonClicked = { navController.navigate(JetChatScreen.Pickup.name) },
-//                    onCancelButtonClicked = {
-//                        cancelOrderAndNavigateToStart(viewModel, navController)
-//                    },
-//                    options = DataSource.flavors.map { id -> context.resources.getString(id) },
-//                    onSelectionChanged = { viewModel.setFlavor(it) },
-//                    modifier = Modifier.fillMaxHeight()
-//                )
+                ConversationScreen(uiState = exampleUiState , navigateToProfile = { user ->
+                    // Click callback
+                    val bundle = bundleOf("userId" to user)
+                    navController.navigate(
+                        R.id.nav_profile,
+                        bundle
+                    )
+                },)
             }
         }
     }
