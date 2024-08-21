@@ -19,6 +19,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.core.os.bundleOf
@@ -29,6 +30,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.jetchat.conversation.ConversationScreen
 import com.example.compose.jetchat.data.exampleUiState
+import com.example.compose.jetchat.profile.ProfileError
 import com.example.compose.jetchat.profile.ProfileScreen
 import com.example.compose.jetchat.profile.ProfileViewModel
 
@@ -48,11 +50,9 @@ fun JetChatApp(
             startDestination = JetChatScreen.Conversation.name,
             modifier = Modifier.padding(innerPadding)
         ) {
+
+            //viewModel.setUserId()
             composable(route = JetChatScreen.Conversation.name) {
-                val x = viewModel.userData.observeAsState().value
-                ProfileScreen(userData = viewModel.userData.observeAsState().value!!)
-            }
-            composable(route = JetChatScreen.Profile.name) {
                 ConversationScreen(uiState = exampleUiState , navigateToProfile = { user ->
                     // Click callback
                     val bundle = bundleOf("userId" to user)
@@ -61,6 +61,15 @@ fun JetChatApp(
                         bundle
                     )
                 },)
+                //userData?.let { it1 -> ProfileScreen(userData = it1) }
+            }
+            composable(route = JetChatScreen.Profile.name) {
+                val userData by viewModel.userData.observeAsState()
+                if (userData == null) {
+                    ProfileError()
+                } else {
+                    ProfileScreen(userData = userData!!)
+                }
             }
         }
     }
