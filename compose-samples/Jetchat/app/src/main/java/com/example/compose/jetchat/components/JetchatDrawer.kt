@@ -51,7 +51,7 @@ import androidx.compose.ui.unit.dp
 import com.example.compose.jetchat.R
 import com.example.compose.jetchat.data.colleagueProfile
 import com.example.compose.jetchat.data.meProfile
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.example.compose.jetchat.theme.JetChatTheme
 
 @Composable
 fun JetchatDrawerContent(
@@ -192,7 +192,7 @@ fun DividerItem(modifier: Modifier = Modifier) {
 @Composable
 @Preview
 fun DrawerPreview() {
-    JetchatTheme {
+    JetChatTheme {
         Surface {
             Column {
                 JetchatDrawerContent({}, {})
@@ -203,7 +203,7 @@ fun DrawerPreview() {
 @Composable
 @Preview
 fun DrawerPreviewDark() {
-    JetchatTheme(isDarkTheme = true) {
+    JetChatTheme(isDarkTheme = true) {
         Surface {
             Column {
                 JetchatDrawerContent({}, {})

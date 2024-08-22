@@ -31,7 +31,7 @@ import com.example.compose.jetchat.conversation.ConversationScreen
 import com.example.compose.jetchat.conversation.ConversationTestTag
 import com.example.compose.jetchat.conversation.ConversationUiState
 import com.example.compose.jetchat.data.exampleUiState
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.example.compose.jetchat.theme.JetChatTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Before
 import org.junit.Rule
@@ -51,7 +51,7 @@ class ConversationTest {
     fun setUp() {
         // Launch the conversation screen
         composeTestRule.setContent {
-            JetchatTheme(isDarkTheme = themeIsDark.collectAsStateWithLifecycle(false).value) {
+            JetChatTheme(isDarkTheme = themeIsDark.collectAsStateWithLifecycle(false).value) {
                 ConversationScreen(
                     uiState = conversationTestUiState,
                     navigateToProfile = { },

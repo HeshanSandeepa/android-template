@@ -35,7 +35,7 @@ import androidx.test.espresso.Espresso
 import com.example.compose.jetchat.conversation.ConversationScreen
 import com.example.compose.jetchat.conversation.KeyboardShownKey
 import com.example.compose.jetchat.data.exampleUiState
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.example.compose.jetchat.theme.JetChatTheme
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Rule
@@ -55,7 +55,7 @@ class UserInputTest {
     fun setUp() {
         // Launch the conversation screen
         composeTestRule.setContent {
-            JetchatTheme {
+            JetChatTheme {
                 ConversationScreen(
                     uiState = exampleUiState,
                     navigateToProfile = { },

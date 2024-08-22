@@ -48,7 +48,7 @@ import com.example.compose.jetchat.FunctionalityNotAvailablePopup
 import com.example.compose.jetchat.MainViewModel
 import com.example.compose.jetchat.R
 import com.example.compose.jetchat.components.JetchatAppBar
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.example.compose.jetchat.theme.JetChatTheme
 
 class ProfileFragment : Fragment() {
 
@@ -77,7 +77,7 @@ class ProfileFragment : Fragment() {
                     FunctionalityNotAvailablePopup { functionalityNotAvailablePopupShown = false }
                 }
 
-                JetchatTheme {
+                JetChatTheme {
                     JetchatAppBar(
                         // Reset the minimum bounds that are passed to the root of a compose tree
                         modifier = Modifier.wrapContentSize(),
@@ -107,7 +107,7 @@ class ProfileFragment : Fragment() {
                 val userData by viewModel.userData.observeAsState()
                 val nestedScrollInteropConnection = rememberNestedScrollInteropConnection()
 
-                JetchatTheme {
+                JetChatTheme {
                     if (userData == null) {
                         ProfileError()
                     } else {

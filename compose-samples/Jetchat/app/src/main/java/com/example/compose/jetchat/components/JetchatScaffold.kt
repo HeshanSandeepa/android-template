@@ -23,7 +23,7 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.example.compose.jetchat.theme.JetChatTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,7 +33,7 @@ fun JetchatDrawer(
     onChatClicked: (String) -> Unit,
     content: @Composable () -> Unit
 ) {
-    JetchatTheme {
+    JetChatTheme {
         ModalNavigationDrawer(
             drawerState = drawerState,
             drawerContent = {

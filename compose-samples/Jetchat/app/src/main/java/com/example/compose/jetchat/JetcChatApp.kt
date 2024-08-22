@@ -22,7 +22,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.core.os.bundleOf
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -55,11 +54,11 @@ fun JetChatApp(
             composable(route = JetChatScreen.Conversation.name) {
                 ConversationScreen(uiState = exampleUiState , navigateToProfile = { user ->
                     // Click callback
-                    val bundle = bundleOf("userId" to user)
-                    navController.navigate(
-                        R.id.nav_profile,
-                        bundle
-                    )
+//                    val bundle = bundleOf("userId" to user)
+//                    navController.navigate(
+//                        R.id.nav_profile,
+//                        bundle
+//                    )
                 },)
                 //userData?.let { it1 -> ProfileScreen(userData = it1) }
             }
