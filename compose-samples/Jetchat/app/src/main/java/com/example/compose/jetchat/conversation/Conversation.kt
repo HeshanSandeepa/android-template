@@ -84,7 +84,7 @@ import com.example.compose.jetchat.FunctionalityNotAvailablePopup
 import com.example.compose.jetchat.R
 import com.example.compose.jetchat.components.JetchatAppBar
 import com.example.compose.jetchat.data.exampleUiState
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.example.compose.jetchat.theme.JetChatTheme
 import kotlinx.coroutines.launch
 
 /**
@@ -487,7 +487,7 @@ fun ClickableMessage(
 @Preview
 @Composable
 fun ConversationPreview() {
-    JetchatTheme {
+    JetChatTheme {
         ConversationScreen(
             uiState = exampleUiState,
             navigateToProfile = { }
@@ -498,7 +498,7 @@ fun ConversationPreview() {
 @Preview
 @Composable
 fun ChannelBarPrev() {
-    JetchatTheme {
+    JetChatTheme {
         ChannelNameBar(channelName = "composers", channelMembers = 52)
     }
 }

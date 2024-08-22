@@ -23,14 +23,11 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import androidx.compose.ui.platform.ComposeView
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import com.example.compose.jetchat.MainViewModel
-import com.example.compose.jetchat.R
 import com.example.compose.jetchat.data.exampleUiState
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.example.compose.jetchat.theme.JetChatTheme
 
 class ConversationFragment : Fragment() {
 
@@ -44,16 +41,16 @@ class ConversationFragment : Fragment() {
         layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
 
         setContent {
-            JetchatTheme {
+            JetChatTheme {
                 ConversationScreen(
                     uiState = exampleUiState,
                     navigateToProfile = { user ->
                         // Click callback
-                        val bundle = bundleOf("userId" to user)
-                        findNavController().navigate(
-                            R.id.nav_profile,
-                            bundle
-                        )
+//                        val bundle = bundleOf("userId" to user)
+//                        findNavController().navigate(
+//                            R.id.nav_profile,
+//                            bundle
+//                        )
                     },
                     onNavIconPressed = {
                         activityViewModel.openDrawer()

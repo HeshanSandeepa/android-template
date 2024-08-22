@@ -37,7 +37,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Chat
 import androidx.compose.material.icons.outlined.Create
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -51,7 +50,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
@@ -70,7 +68,7 @@ import com.example.compose.jetchat.components.AnimatingFabContent
 import com.example.compose.jetchat.components.baselineHeight
 import com.example.compose.jetchat.data.colleagueProfile
 import com.example.compose.jetchat.data.meProfile
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.example.compose.jetchat.theme.JetChatTheme
 
 @Composable
 fun ProfileScreen(
@@ -276,7 +274,7 @@ fun ProfileFab(
 @Preview(widthDp = 640, heightDp = 360)
 @Composable
 fun ConvPreviewLandscapeMeDefault() {
-    JetchatTheme {
+    JetChatTheme {
         ProfileScreen(meProfile)
     }
 }
@@ -284,7 +282,7 @@ fun ConvPreviewLandscapeMeDefault() {
 @Preview(widthDp = 360, heightDp = 480)
 @Composable
 fun ConvPreviewPortraitMeDefault() {
-    JetchatTheme {
+    JetChatTheme {
         ProfileScreen(meProfile)
     }
 }
@@ -292,7 +290,7 @@ fun ConvPreviewPortraitMeDefault() {
 @Preview(widthDp = 360, heightDp = 480)
 @Composable
 fun ConvPreviewPortraitOtherDefault() {
-    JetchatTheme {
+    JetChatTheme {
         ProfileScreen(colleagueProfile)
     }
 }
@@ -300,7 +298,7 @@ fun ConvPreviewPortraitOtherDefault() {
 @Preview
 @Composable
 fun ProfileFabPreview() {
-    JetchatTheme {
+    JetChatTheme {
         ProfileFab(extended = true, userIsMe = false)
     }
 }
