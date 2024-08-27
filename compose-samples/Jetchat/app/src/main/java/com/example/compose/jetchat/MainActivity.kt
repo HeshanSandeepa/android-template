@@ -18,17 +18,15 @@ package com.example.compose.jetchat
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.compose.jetchat.theme.JetChatTheme
 
 /**
  * Main activity for the app.
  */
-class NavActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             JetChatTheme {
