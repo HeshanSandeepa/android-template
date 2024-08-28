@@ -36,12 +36,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Chat
 import androidx.compose.material.icons.outlined.Create
-import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -59,17 +63,14 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.compose.jetchat.FunctionalityNotAvailablePopup
 import com.example.compose.jetchat.R
 import com.example.compose.jetchat.components.AnimatingFabContent
 import com.example.compose.jetchat.components.baselineHeight
-import com.example.compose.jetchat.data.colleagueProfile
-import com.example.compose.jetchat.data.meProfile
-import com.example.compose.jetchat.theme.JetChatTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
     userData: ProfileScreenState,
@@ -88,6 +89,30 @@ fun ProfileScreen(
             .nestedScroll(nestedScrollInteropConnection)
             .systemBarsPadding()
     ) {
+
+
+        Scaffold(        topBar = {
+            TopAppBar(
+                title = { Text("") },
+                colors = TopAppBarDefaults.mediumTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                ),
+            )
+        },) { paddingValues ->
+            Surface {
+                Column(
+                    Modifier.fillMaxSize().padding(paddingValues)
+                ) {
+                    ProfileHeader(
+                        scrollState,
+                        userData,
+                        this@BoxWithConstraints.maxHeight
+                    )
+                    UserInfoFields(userData, this@BoxWithConstraints.maxHeight)
+                }
+            }
+        }
+
         Surface {
             Column(
                 modifier = Modifier
@@ -190,7 +215,6 @@ private fun ProfileHeader(
             modifier = Modifier
                 .heightIn(max = containerHeight / 2)
                 .fillMaxWidth()
-                // TODO: Update to use offset to avoid recomposition
                 .padding(
                     start = 16.dp,
                     top = offsetDp,
@@ -207,7 +231,7 @@ private fun ProfileHeader(
 @Composable
 fun ProfileProperty(label: String, value: String, isLink: Boolean = false) {
     Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp)) {
-        Divider()
+        HorizontalDivider()
         Text(
             text = label,
             modifier = Modifier.baselineHeight(24.dp),
@@ -268,37 +292,5 @@ fun ProfileFab(
                 extended = extended
             )
         }
-    }
-}
-
-@Preview(widthDp = 640, heightDp = 360)
-@Composable
-fun ConvPreviewLandscapeMeDefault() {
-    JetChatTheme {
-        ProfileScreen(meProfile)
-    }
-}
-
-@Preview(widthDp = 360, heightDp = 480)
-@Composable
-fun ConvPreviewPortraitMeDefault() {
-    JetChatTheme {
-        ProfileScreen(meProfile)
-    }
-}
-
-@Preview(widthDp = 360, heightDp = 480)
-@Composable
-fun ConvPreviewPortraitOtherDefault() {
-    JetChatTheme {
-        ProfileScreen(colleagueProfile)
-    }
-}
-
-@Preview
-@Composable
-fun ProfileFabPreview() {
-    JetChatTheme {
-        ProfileFab(extended = true, userIsMe = false)
     }
 }
