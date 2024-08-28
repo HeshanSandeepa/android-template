@@ -50,19 +50,11 @@ fun JetChatApp(
             modifier = Modifier.padding(innerPadding)
         ) {
 
-            //viewModel.setUserId()
+            viewModel.setUserId("1")
             composable(route = JetChatScreen.Conversation.name) {
-                ConversationScreen(uiState = exampleUiState , navigateToProfile = { user ->
+                ConversationScreen(uiState = exampleUiState , navigateToProfile = {
                     navController.navigate(JetChatScreen.Profile.name)
-
-                    // Click callback
-//                    val bundle = bundleOf("userId" to user)
-//                    navController.navigate(
-//                        R.id.nav_profile,
-//                        bundle
-//                    )
                 },)
-                //userData?.let { it1 -> ProfileScreen(userData = it1) }
             }
             composable(route = JetChatScreen.Profile.name) {
                 val userData by viewModel.userData.observeAsState()
