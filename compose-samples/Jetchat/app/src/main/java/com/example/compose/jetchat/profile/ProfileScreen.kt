@@ -32,7 +32,6 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Chat
 import androidx.compose.material.icons.outlined.Create
@@ -90,10 +89,9 @@ fun ProfileScreen(
             .systemBarsPadding()
     ) {
 
-
-        Scaffold(        topBar = {
+        Scaffold(topBar = {
             TopAppBar(
-                title = { Text("") },
+                title = { Text("Profile") },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer
                 ),
@@ -113,20 +111,7 @@ fun ProfileScreen(
             }
         }
 
-        Surface {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(scrollState),
-            ) {
-                ProfileHeader(
-                    scrollState,
-                    userData,
-                    this@BoxWithConstraints.maxHeight
-                )
-                UserInfoFields(userData, this@BoxWithConstraints.maxHeight)
-            }
-        }
+
 
         val fabExtended by remember { derivedStateOf { scrollState.value == 0 } }
         ProfileFab(
