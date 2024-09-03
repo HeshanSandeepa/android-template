@@ -23,7 +23,9 @@ import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.performClick
+import org.junit.Assert.assertEquals
 import org.junit.Rule
+import org.junit.Test
 
 /**
  * Checks that the navigation flows in the app are correct.
@@ -33,11 +35,11 @@ class NavigationTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
-//    @Test
-//    fun app_launches() {
-//        // Check app launches at the correct destination
-//        assertEquals(getNavController().currentDestination?.id, R.id.nav_home)
-//    }
+    @Test
+    fun app_launches() {
+        // Check app launches at the correct destination
+        assertEquals(getNavController().currentDestination?.id, R.id.nav_home)
+    }
 //
 //    @Test
 //    fun profileScreen_back_conversationScreen() {
