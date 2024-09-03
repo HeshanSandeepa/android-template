@@ -18,6 +18,7 @@ package com.example.compose.jetchat.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,11 +31,13 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Chat
 import androidx.compose.material.icons.outlined.Create
+import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
@@ -43,8 +46,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -64,9 +65,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.compose.jetchat.FunctionalityNotAvailablePopup
+import com.example.compose.jetchat.MainViewModel
 import com.example.compose.jetchat.R
 import com.example.compose.jetchat.components.AnimatingFabContent
+import com.example.compose.jetchat.components.JetchatAppBar
 import com.example.compose.jetchat.components.baselineHeight
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -75,6 +79,8 @@ fun ProfileScreen(
     userData: ProfileScreenState,
     nestedScrollInteropConnection: NestedScrollConnection = rememberNestedScrollInteropConnection()
 ) {
+    val activityViewModel: MainViewModel = viewModel()
+
     var functionalityNotAvailablePopupShown by remember { mutableStateOf(false) }
     if (functionalityNotAvailablePopupShown) {
         FunctionalityNotAvailablePopup { functionalityNotAvailablePopupShown = false }
@@ -90,11 +96,26 @@ fun ProfileScreen(
     ) {
 
         Scaffold(topBar = {
-            TopAppBar(
-                title = { Text("Profile") },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
-                ),
+
+            JetchatAppBar(
+                // Reset the minimum bounds that are passed to the root of a compose tree
+                modifier = Modifier.wrapContentSize(),
+                onNavIconPressed = { activityViewModel.openDrawer() },
+                title = { },
+                actions = {
+                    // More icon
+                    Icon(
+                        imageVector = Icons.Outlined.MoreVert,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier
+                            .clickable(onClick = {
+                                functionalityNotAvailablePopupShown = true
+                            })
+                            .padding(horizontal = 12.dp, vertical = 16.dp)
+                            .height(24.dp),
+                        contentDescription = stringResource(id = R.string.more_options)
+                    )
+                }
             )
         },) { paddingValues ->
             Surface {
