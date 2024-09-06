@@ -85,6 +85,7 @@ composeCompiler {
 
 dependencies {
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.testing)
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)

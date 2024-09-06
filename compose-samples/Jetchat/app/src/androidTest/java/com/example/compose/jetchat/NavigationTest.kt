@@ -16,14 +16,13 @@
 
 package com.example.compose.jetchat
 
-import androidx.compose.ui.semantics.SemanticsProperties
-import androidx.compose.ui.test.SemanticsMatcher
-import androidx.compose.ui.test.hasAnyAncestor
-import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.performClick
-import org.junit.Assert.assertEquals
+import androidx.navigation.compose.ComposeNavigator
+import androidx.navigation.testing.TestNavHostController
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -33,13 +32,33 @@ import org.junit.Test
 class NavigationTest {
 
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<MainActivity>()
+    val composeTestRule = createComposeRule()
+    lateinit var navController: TestNavHostController
 
-    @Test
-    fun app_launches() {
-        // Check app launches at the correct destination
-        assertEquals(getNavController().currentDestination?.id, R.id.nav_home)
+
+    @Before
+    fun setupAppNavHost() {
+        composeTestRule.setContent {
+            navController = TestNavHostController(LocalContext.current)
+            navController.navigatorProvider.addNavigator(ComposeNavigator())
+            //NavHost(navController = navController)
+        }
     }
+
+    // Unit test
+    @Test
+    fun appNavHost_verifyStartDestination() {
+        composeTestRule
+            .onNodeWithContentDescription("Start Screen")
+            .assertIsDisplayed()
+    }
+
+//    @Test
+//    fun app_launches() {
+//        // Check app launches at the correct destination
+//        assertEquals(rememberNavController(), R.id.nav_home)
+//        assertEquals(getNavController().currentDestination?.id, R.id.nav_home)
+//    }
 //
 //    @Test
 //    fun profileScreen_back_conversationScreen() {
@@ -73,29 +92,29 @@ class NavigationTest {
 //        // Chewie, we're home
 //        assertEquals(getNavController().currentDestination?.id, R.id.nav_home)
 //    }
-
-    private fun navigateToProfile(name: String) {
-        composeTestRule.onNodeWithContentDescription(
-            composeTestRule.activity.getString(R.string.navigation_drawer_open)
-        ).performClick()
-
-        composeTestRule.onNode(hasText(name) and isInDrawer()).performClick()
-    }
-
-    private fun isInDrawer() = hasAnyAncestor(isDrawer())
-
-    private fun isDrawer() = SemanticsMatcher.expectValue(
-        SemanticsProperties.PaneTitle,
-        composeTestRule.activity.getString(androidx.compose.ui.R.string.navigation_menu)
-    )
-
-    private fun navigateToHome() {
-        composeTestRule.onNodeWithContentDescription(
-            composeTestRule.activity.getString(R.string.navigation_drawer_open)
-        ).performClick()
-
-        composeTestRule.onNode(hasText("composers") and isInDrawer()).performClick()
-    }
+//
+//    private fun navigateToProfile(name: String) {
+//        composeTestRule.onNodeWithContentDescription(
+//            composeTestRule.activity.getString(R.string.navigation_drawer_open)
+//        ).performClick()
+//
+//        composeTestRule.onNode(hasText(name) and isInDrawer()).performClick()
+//    }
+//
+//    private fun isInDrawer() = hasAnyAncestor(isDrawer())
+//
+//    private fun isDrawer() = SemanticsMatcher.expectValue(
+//        SemanticsProperties.PaneTitle,
+//        composeTestRule.activity.getString(androidx.compose.ui.R.string.navigation_menu)
+//    )
+//
+//    private fun navigateToHome() {
+//        composeTestRule.onNodeWithContentDescription(
+//            composeTestRule.activity.getString(R.string.navigation_drawer_open)
+//        ).performClick()
+//
+//        composeTestRule.onNode(hasText("composers") and isInDrawer()).performClick()
+//    }
 
 //    private fun getNavController(): NavController {
 //        return composeTestRule.activity.findNavController(R.id.nav_host_fragment)
