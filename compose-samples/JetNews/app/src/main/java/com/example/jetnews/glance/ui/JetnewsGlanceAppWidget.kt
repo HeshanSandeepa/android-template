@@ -47,10 +47,10 @@ import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.padding
 import androidx.glance.layout.size
 import androidx.glance.layout.width
-import com.example.jetnews.JetnewsApplication
+import com.example.jetnews.JetNewsApplication
 import com.example.jetnews.R
 import com.example.jetnews.data.successOr
-import com.example.jetnews.glance.ui.theme.JetnewsGlanceColorScheme
+import com.example.jetnews.glance.ui.theme.JetNewsGlanceColorScheme
 import com.example.jetnews.model.Post
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -61,7 +61,7 @@ class JetnewsGlanceAppWidget : GlanceAppWidget() {
     override val sizeMode: SizeMode = SizeMode.Exact
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-        val application = context.applicationContext as JetnewsApplication
+        val application = context.applicationContext as JetNewsApplication
         val postsRepository = application.container.postsRepository
 
         // Load data needed to render the composable.
@@ -87,7 +87,7 @@ class JetnewsGlanceAppWidget : GlanceAppWidget() {
                 colors = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     GlanceTheme.colors
                 } else {
-                    JetnewsGlanceColorScheme.colors
+                    JetNewsGlanceColorScheme.colors
                 }
             ) {
                 JetnewsContent(

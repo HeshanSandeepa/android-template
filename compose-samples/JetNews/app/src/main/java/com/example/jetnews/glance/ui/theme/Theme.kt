@@ -21,7 +21,7 @@ import androidx.glance.material3.ColorProviders
 import com.example.jetnews.ui.theme.DarkColors
 import com.example.jetnews.ui.theme.LightColors
 
-object JetnewsGlanceColorScheme {
+object JetNewsGlanceColorScheme {
     val colors = ColorProviders(
         light = LightColors,
         dark = DarkColors
