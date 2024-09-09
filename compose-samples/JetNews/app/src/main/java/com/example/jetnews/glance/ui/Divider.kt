@@ -25,7 +25,7 @@ import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import androidx.glance.unit.ColorProvider
-import com.example.jetnews.glance.ui.theme.JetnewsGlanceColorScheme
+import com.example.jetnews.glance.ui.theme.JetNewsGlanceColorScheme
 
 /**
  * A thin line that groups content in lists and layouts.
@@ -52,5 +52,5 @@ object DividerDefaults {
     val Thickness: Dp = 1.dp
 
     /** Default color of a divider. */
-    val color: ColorProvider @Composable get() = JetnewsGlanceColorScheme.outlineVariant
+    val color: ColorProvider @Composable get() = JetNewsGlanceColorScheme.outlineVariant
 }

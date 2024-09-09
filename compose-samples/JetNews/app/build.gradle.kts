@@ -151,6 +151,11 @@ dependencies {
     // Robolectric dependencies
     testImplementation(libs.androidx.compose.ui.test.junit4)
     testImplementation(libs.robolectric)
+
+
+
+    debugImplementation(libs.androidx.ui.tooling)
+    implementation(libs.androidx.ui.tooling.preview)
 }
 
 tasks.withType<Test>().configureEach {
