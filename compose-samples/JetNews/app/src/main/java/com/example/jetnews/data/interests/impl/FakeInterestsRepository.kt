@@ -30,7 +30,6 @@ import kotlinx.coroutines.flow.update
  * Implementation of InterestRepository that returns a hardcoded list of
  * topics, people and publications synchronously.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 class FakeInterestsRepository : InterestsRepository {
 
     private val topics by lazy {
