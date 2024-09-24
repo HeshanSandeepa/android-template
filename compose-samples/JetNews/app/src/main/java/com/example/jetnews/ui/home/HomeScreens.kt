@@ -431,17 +431,17 @@ private fun PostList(
                 )
             }
         }
-        item { PostListTopSection(postsFeed.highlightedPost, onArticleTapped) }
-//        if (postsFeed.recommendedPosts.isNotEmpty()) {
-//            item {
-//                PostListSimpleSection(
-//                    postsFeed.recommendedPosts,
-//                    onArticleTapped,
-//                    favorites,
-//                    onToggleFavorite
-//                )
-//            }
-//        }
+       // item { PostListTopSection(postsFeed.highlightedPost, onArticleTapped) }
+        if (postsFeed.recommendedPosts.isNotEmpty()) {
+            item {
+                PostListSimpleSection(
+                    postsFeed.recommendedPosts,
+                    onArticleTapped,
+                    favorites,
+                    onToggleFavorite
+                )
+            }
+        }
 //        if (postsFeed.popularPosts.isNotEmpty() && !showExpandedSearch) {
 //            item {
 //                PostListPopularSection(
