@@ -37,7 +37,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -49,7 +48,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -106,6 +104,7 @@ import com.example.jetnews.ui.modifiers.interceptKey
 import com.example.jetnews.ui.theme.JetnewsTheme
 import com.example.jetnews.ui.utils.BookmarkButton
 import com.example.jetnews.ui.utils.FavoriteButton
+import com.example.jetnews.ui.utils.FullScreenLoading
 import com.example.jetnews.ui.utils.ShareButton
 import com.example.jetnews.ui.utils.TextSettingsButton
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -131,7 +130,7 @@ fun HomeFeedWithArticleDetailsScreen(
     openDrawer: () -> Unit,
     homeListLazyListState: LazyListState,
     articleDetailLazyListStates: Map<String, LazyListState>,
-    snackbarHostState: SnackbarHostState,
+    snackBarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
     onSearchInputChanged: (String) -> Unit,
 ) {
@@ -141,7 +140,7 @@ fun HomeFeedWithArticleDetailsScreen(
         onRefreshPosts = onRefreshPosts,
         onErrorDismiss = onErrorDismiss,
         openDrawer = openDrawer,
-        snackbarHostState = snackbarHostState,
+        snackbarHostState = snackBarHostState,
         modifier = modifier,
     ) { hasPostsUiState, contentPadding, contentModifier ->
         Row(contentModifier) {
@@ -315,7 +314,9 @@ private fun HomeScreenWithList(
                             // if there are no posts, and no error, let the user refresh manually
                             TextButton(
                                 onClick = onRefreshPosts,
-                                modifier.padding(innerPadding).fillMaxSize()
+                                modifier
+                                    .padding(innerPadding)
+                                    .fillMaxSize()
                             ) {
                                 Text(
                                     stringResource(id = R.string.home_tap_to_load_content),
@@ -431,17 +432,17 @@ private fun PostList(
                 )
             }
         }
-       // item { PostListTopSection(postsFeed.highlightedPost, onArticleTapped) }
-        if (postsFeed.recommendedPosts.isNotEmpty()) {
-            item {
-                PostListSimpleSection(
-                    postsFeed.recommendedPosts,
-                    onArticleTapped,
-                    favorites,
-                    onToggleFavorite
-                )
-            }
-        }
+        item { PostListTopSection(postsFeed.highlightedPost, onArticleTapped) }
+//        if (postsFeed.recommendedPosts.isNotEmpty()) {
+//            item {
+//                PostListSimpleSection(
+//                    postsFeed.recommendedPosts,
+//                    onArticleTapped,
+//                    favorites,
+//                    onToggleFavorite
+//                )
+//            }
+//        }
 //        if (postsFeed.popularPosts.isNotEmpty() && !showExpandedSearch) {
 //            item {
 //                PostListPopularSection(
@@ -455,19 +456,7 @@ private fun PostList(
     }
 }
 
-/**
- * Full screen circular progress indicator
- */
-@Composable
-private fun FullScreenLoading() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
-    ) {
-        CircularProgressIndicator()
-    }
-}
+
 
 /**
  * Top section of [PostList]
@@ -811,7 +800,7 @@ fun PreviewHomeListDetailScreen() {
                     post.id to rememberLazyListState()
                 }
             },
-            snackbarHostState = SnackbarHostState(),
+            snackBarHostState = SnackbarHostState(),
             onSearchInputChanged = {}
         )
     }
