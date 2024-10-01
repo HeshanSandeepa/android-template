@@ -33,7 +33,7 @@ import kotlinx.coroutines.withContext
  * posts with resources synchronously.
  */
 @OptIn(ExperimentalCoroutinesApi::class)
-class BlockingFakePostsRepository : PostsRepository {
+class  BlockingFakePostsRepository : PostsRepository {
 
     // for now, keep the favorites in memory
     private val favorites = MutableStateFlow<Set<String>>(setOf())

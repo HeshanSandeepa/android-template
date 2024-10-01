@@ -43,7 +43,7 @@ import androidx.glance.layout.padding
 import androidx.glance.layout.size
 import androidx.glance.layout.width
 import androidx.glance.text.Text
-import com.example.jetnews.JetNewsApplication.Companion.JETNEWS_APP_URI
+import com.example.jetnews.JetNewsApplication.Companion.JET_NEWS_APP_URI
 import com.example.jetnews.R
 import com.example.jetnews.glance.ui.theme.JetNewsGlanceTextStyles
 import com.example.jetnews.model.Post
@@ -68,7 +68,7 @@ private fun openPostDetails(context: Context, post: Post): Action {
     return actionStartActivity(
         Intent(
             Intent.ACTION_VIEW,
-            "$JETNEWS_APP_URI/home?postId=${post.id}".toUri(),
+            "$JET_NEWS_APP_URI/home?postId=${post.id}".toUri(),
             context,
             MainActivity::class.java
         )

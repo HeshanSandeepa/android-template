@@ -22,7 +22,7 @@ import com.example.jetnews.data.AppContainerImpl
 
 class JetNewsApplication : Application() {
     companion object {
-        const val JETNEWS_APP_URI = "https://developer.android.com/jetnews"
+        const val JET_NEWS_APP_URI = "https://developer.android.com/jetnews"
     }
 
     // AppContainer instance used by the rest of classes to obtain dependencies

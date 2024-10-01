@@ -61,7 +61,7 @@ fun HomeRoute(
         onInteractWithArticleDetails = { homeViewModel.interactedWithArticleDetails(it) },
         onSearchInputChanged = { homeViewModel.onSearchInputChanged(it) },
         openDrawer = openDrawer,
-        snackbarHostState = snackbarHostState,
+        snackBarHostState = snackbarHostState,
     )
 }
 
@@ -80,7 +80,7 @@ fun HomeRoute(
  * @param onInteractWithArticleDetails (event) indicate that the article details were interacted
  * with
  * @param openDrawer (event) request opening the app drawer
- * @param snackbarHostState (state) state for the [Scaffold] component on this screen
+ * @param snackBarHostState (state) state for the [Scaffold] component on this screen
  */
 @Composable
 fun HomeRoute(
@@ -94,7 +94,7 @@ fun HomeRoute(
     onInteractWithArticleDetails: (String) -> Unit,
     onSearchInputChanged: (String) -> Unit,
     openDrawer: () -> Unit,
-    snackbarHostState: SnackbarHostState
+    snackBarHostState: SnackbarHostState
 ) {
     // Construct the lazy list states for the list and the details outside of deciding which one to
     // show. This allows the associated state to survive beyond that decision, and therefore
@@ -124,7 +124,7 @@ fun HomeRoute(
                 openDrawer = openDrawer,
                 homeListLazyListState = homeListLazyListState,
                 articleDetailLazyListStates = articleDetailLazyListStates,
-                snackbarHostState = snackbarHostState,
+                snackBarHostState = snackBarHostState,
                 onSearchInputChanged = onSearchInputChanged,
             )
         }
@@ -138,7 +138,7 @@ fun HomeRoute(
                 onErrorDismiss = onErrorDismiss,
                 openDrawer = openDrawer,
                 homeListLazyListState = homeListLazyListState,
-                snackbarHostState = snackbarHostState,
+                snackbarHostState = snackBarHostState,
                 onSearchInputChanged = onSearchInputChanged,
             )
         }
