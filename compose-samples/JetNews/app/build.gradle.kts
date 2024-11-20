@@ -18,6 +18,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -83,6 +84,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
+    kotlinOptions {
+        jvmTarget= 17.toString()
+    }
+
     buildFeatures {
         compose = true
     }
@@ -100,6 +105,7 @@ composeCompiler {
 }
 
 dependencies {
+    implementation(libs.mediation.test.suite)
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
@@ -139,6 +145,10 @@ dependencies {
 
     implementation(libs.google.android.material)
 
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
+
+
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.runner)
@@ -152,12 +162,10 @@ dependencies {
     testImplementation(libs.androidx.compose.ui.test.junit4)
     testImplementation(libs.robolectric)
 
-
-
     debugImplementation(libs.androidx.ui.tooling)
     implementation(libs.androidx.ui.tooling.preview)
 }
 
 tasks.withType<Test>().configureEach {
     systemProperties.put("robolectric.logging", "stdout")
-} 
+}

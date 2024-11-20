@@ -26,16 +26,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.jetnews.data.AppContainer
 import com.example.jetnews.ui.components.AppNavRail
+import com.example.jetnews.ui.home.HomeViewModel
 import com.example.jetnews.ui.theme.JetnewsTheme
 import kotlinx.coroutines.launch
 
 @Composable
 fun JetNewsApp(
-    appContainer: AppContainer,
+    homeViewModel: HomeViewModel,
     widthSizeClass: WindowWidthSizeClass,
 ) {
     JetnewsTheme {
@@ -75,7 +76,7 @@ fun JetNewsApp(
                     )
                 }
                 JetNewsNavGraph(
-                    appContainer = appContainer,
+                    homeViewModel = homeViewModel,
                     isExpandedScreen = isExpandedScreen,
                     navController = navController,
                     openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },

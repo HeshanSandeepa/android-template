@@ -19,17 +19,31 @@ package com.example.jetnews
 import android.app.Application
 import com.example.jetnews.data.AppContainer
 import com.example.jetnews.data.AppContainerImpl
+import com.example.jetnews.di.AppComponent
+import com.example.jetnews.di.DaggerAppComponent
+
 
 class JetNewsApplication : Application() {
     companion object {
         const val JET_NEWS_APP_URI = "https://developer.android.com/jetnews"
     }
+//
+//    // AppContainer instance used by the rest of classes to obtain dependencies
+//    lateinit var container: AppContainer
+//
+//    override fun onCreate() {
+//        super.onCreate()
+//        container = AppContainerImpl(this)
+//    }
 
-    // AppContainer instance used by the rest of classes to obtain dependencies
-    lateinit var container: AppContainer
+    // Instance of the AppComponent that will be used by all the Activities in the project
+
 
     override fun onCreate() {
         super.onCreate()
-        container = AppContainerImpl(this)
+        DaggerAppComponent.builder().application(this).build().inject(this)
     }
+
+
+
 }

@@ -32,6 +32,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * UI state for the Home route.
@@ -118,7 +119,8 @@ private data class HomeViewModelState(
 /**
  * ViewModel that handles the business logic of the Home screen
  */
-class HomeViewModel(
+
+class HomeViewModel @Inject constructor (
     private val postsRepository: PostsRepository,
     preSelectedPostId: String?
 ) : ViewModel() {
