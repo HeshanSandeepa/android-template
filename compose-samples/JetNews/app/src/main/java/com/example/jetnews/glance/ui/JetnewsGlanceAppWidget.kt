@@ -49,6 +49,7 @@ import androidx.glance.layout.size
 import androidx.glance.layout.width
 import com.example.jetnews.JetNewsApplication
 import com.example.jetnews.R
+import com.example.jetnews.data.posts.impl.FakePostsRepository
 import com.example.jetnews.data.successOr
 import com.example.jetnews.glance.ui.theme.JetNewsGlanceColorScheme
 import com.example.jetnews.model.Post
@@ -59,10 +60,12 @@ import kotlinx.coroutines.withContext
 
 class JetnewsGlanceAppWidget : GlanceAppWidget() {
     override val sizeMode: SizeMode = SizeMode.Exact
+    lateinit var postsRepository : FakePostsRepository
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val application = context.applicationContext as JetNewsApplication
-        val postsRepository = application.container.postsRepository
+        //val postsRepository = application.container.postsRepository
+
 
         // Load data needed to render the composable.
         // The widget is configured to refresh periodically using the "android:updatePeriodMillis"

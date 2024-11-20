@@ -31,6 +31,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * UI state for the Interests screen
@@ -42,7 +43,7 @@ data class InterestsUiState(
     val loading: Boolean = false,
 )
 
-class InterestsViewModel(
+class InterestsViewModel @Inject constructor(
     private val interestsRepository: InterestsRepository
 ) : ViewModel() {
 

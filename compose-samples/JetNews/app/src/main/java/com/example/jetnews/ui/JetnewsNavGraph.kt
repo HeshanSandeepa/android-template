@@ -18,6 +18,7 @@ package com.example.jetnews.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -30,18 +31,24 @@ import com.example.jetnews.ui.home.HomeRoute
 import com.example.jetnews.ui.home.HomeViewModel
 import com.example.jetnews.ui.interests.InterestsRoute
 import com.example.jetnews.ui.interests.InterestsViewModel
+import javax.inject.Inject
 
 const val POST_ID = "postId"
 
+
+
 @Composable
 fun JetNewsNavGraph(
-    appContainer: AppContainer,
+    homeViewModel: HomeViewModel,
     isExpandedScreen: Boolean,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     openDrawer: () -> Unit = {},
     startDestination: String = JetnewsDestinations.HOME_ROUTE,
 ) {
+
+
+
     NavHost(
         navController = navController,
         startDestination = startDestination,
@@ -56,12 +63,11 @@ fun JetNewsNavGraph(
                 }
             )
         ) { navBackStackEntry ->
-            val homeViewModel: HomeViewModel = viewModel(
-                factory = HomeViewModel.provideFactory(
-                    postsRepository = appContainer.postsRepository,
-                    preSelectedPostId = navBackStackEntry.arguments?.getString(POST_ID)
-                )
-            )
+            //val homeViewModel = ViewModelProvider(MainActivity::class.java, viewModelFactory).get(HomeViewModel::class.java)
+
+
+
+
             HomeRoute(
                 homeViewModel = homeViewModel,
                 isExpandedScreen = isExpandedScreen,
@@ -69,14 +75,15 @@ fun JetNewsNavGraph(
             )
         }
         composable(JetnewsDestinations.INTERESTS_ROUTE) {
-            val interestsViewModel: InterestsViewModel = viewModel(
-                factory = InterestsViewModel.provideFactory(appContainer.interestsRepository)
-            )
-            InterestsRoute(
-                interestsViewModel = interestsViewModel,
-                isExpandedScreen = isExpandedScreen,
-                openDrawer = openDrawer
-            )
+//            val interestsViewModel: InterestsViewModel = viewModel(
+//                factory = InterestsViewModel.provideFactory(appContainer.interestsRepository)
+//            )
+            //val interestsViewModel = viewModelFactory.create(InterestsViewModel::class.java)
+//            InterestsRoute(
+//                interestsViewModel = interestsViewModel,
+//                isExpandedScreen = isExpandedScreen,
+//                openDrawer = openDrawer
+//            )
         }
     }
 }

@@ -22,19 +22,31 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.lifecycle.ViewModelProvider
 import com.example.jetnews.JetNewsApplication
+import com.example.jetnews.data.AppContainerImpl
+import com.example.jetnews.ui.home.HomeViewModel
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
+
+      //  (application as JetNewsApplication).appComponent.inject(this)
+
+
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
-        val appContainer = (application as JetNewsApplication).container
+        val homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+
         setContent {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-            JetNewsApp(appContainer, widthSizeClass)
+            JetNewsApp(homeViewModel, widthSizeClass)
         }
     }
 }
