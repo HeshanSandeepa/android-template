@@ -4,7 +4,7 @@
 #####
 [versions]
 accompanist = "0.34.0"
-androidGradlePlugin = "8.7.2"
+androidGradlePlugin = "8.5.0"
 androidx-activity-compose = "1.9.0"
 androidx-appcompat = "1.7.0"
 androidx-benchmark = "1.2.4"
@@ -38,7 +38,7 @@ gradle-versions = "0.51.0"
 #hilt = "2.51.1"
 #hiltExt = "1.2.0"
 # DI
-dagger = "2.40.5"
+dagger = "2.48"
 javax-inject = "1"
 
 horologist = "0.6.9"

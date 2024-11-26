@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 /*
  * Copyright 2020 The Android Open Source Project
  *
@@ -18,7 +20,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -86,18 +88,30 @@ android {
 
     kotlinOptions {
         jvmTarget= 17.toString()
+        //jvmTarget = "17"
     }
 
     buildFeatures {
         compose = true
     }
 
-    packaging.resources {
-        // Multiple dependency bring these files in. Exclude them to enable
-        // our test APK to build (has no effect on our AARs)
-        excludes += "/META-INF/AL2.0"
-        excludes += "/META-INF/LGPL2.1"
-    }
+//    androidComponents {
+//        onVariants(selector().all()) { variant ->
+//            afterEvaluate {
+//                val capName = variant.name.capitalize()
+//                tasks.getByName<KotlinCompile>("ksp${capName}Kotlin") {
+//                    setSource(tasks.getByName("generate${capName}DatabaseInterface").outputs)
+//                }
+//            }
+//        }
+//    }
+
+//    packaging.resources {
+//        // Multiple dependency bring these files in. Exclude them to enable
+//        // our test APK to build (has no effect on our AARs)
+//        excludes += "/META-INF/AL2.0"
+//        excludes += "/META-INF/LGPL2.1"
+//    }
 }
 
 composeCompiler {
@@ -146,7 +160,7 @@ dependencies {
     implementation(libs.google.android.material)
 
     implementation(libs.dagger)
-    ksp(libs.dagger.compiler)
+    kapt(libs.dagger.compiler)
 
 
     androidTestImplementation(libs.junit)

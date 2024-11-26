@@ -3,8 +3,8 @@ package com.example.jetnews.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.MapKey
-import dagger.internal.Provider
 import javax.inject.Inject
+import javax.inject.Provider
 import kotlin.reflect.KClass
 
 class ViewModelFactory @Inject constructor(
