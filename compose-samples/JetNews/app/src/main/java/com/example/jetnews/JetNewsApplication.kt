@@ -17,9 +17,6 @@
 package com.example.jetnews
 
 import android.app.Application
-import com.example.jetnews.data.AppContainer
-import com.example.jetnews.data.AppContainerImpl
-import com.example.jetnews.di.AppComponent
 import com.example.jetnews.di.DaggerAppComponent
 
 
@@ -41,7 +38,7 @@ class JetNewsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent.builder().application(this).build().inject(this)
+        DaggerAppComponent.factory().create(applicationContext)
     }
 
 
