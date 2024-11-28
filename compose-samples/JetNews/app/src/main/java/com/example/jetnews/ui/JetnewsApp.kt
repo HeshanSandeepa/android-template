@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun JetNewsApp(
-    homeViewModel: HomeViewModel,
+ /*   homeViewModel: HomeViewModel,*/
     widthSizeClass: WindowWidthSizeClass,
 ) {
     JetnewsTheme {
@@ -75,12 +75,12 @@ fun JetNewsApp(
                         navigateToInterests = navigationActions.navigateToInterests,
                     )
                 }
-                JetNewsNavGraph(
-                    homeViewModel = homeViewModel,
-                    isExpandedScreen = isExpandedScreen,
-                    navController = navController,
-                    openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },
-                )
+//                JetNewsNavGraph(
+//                    homeViewModel = homeViewModel,
+//                    isExpandedScreen = isExpandedScreen,
+//                    navController = navController,
+//                    openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },
+//                )
             }
         }
     }

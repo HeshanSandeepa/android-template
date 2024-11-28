@@ -1,21 +1,22 @@
 package com.example.jetnews.di
 
-import android.content.Context
-import dagger.BindsInstance
+import com.example.jetnews.JetNewsApplication
 import dagger.Component
 import javax.inject.Singleton
 
 // Definition of a Dagger component
 @Singleton
-@Component(modules = [RepoModule::class,  ViewModelModule::class])
+@Component(modules = [AndroidInjectionModule::class,  RepoModule::class,  ViewModelModule::class])
 interface AppComponent {
 
-    // Factory to create instances of the AppComponent
-    @Component.Factory
-    interface Factory {
-        // With @BindsInstance, the Context passed in will be available in the graph
-        fun create(@BindsInstance context: Context): AppComponent
-    }
+//    // Factory to create instances of the AppComponent
+//    @Component.Factory
+//    interface Factory {
+//        // With @BindsInstance, the Context passed in will be available in the graph
+//        fun create(@BindsInstance context: Context): AppComponent
+//    }
+//
+//    fun inject(activity: MainActivity)
 
-    //fun inject(activity: MainActivity)
+    fun inject(application: JetNewsApplication)
 }
