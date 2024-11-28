@@ -88,7 +88,7 @@ android {
 
     kotlinOptions {
         jvmTarget= 17.toString()
-        //jvmTarget = "17"
+        //jvmTarget = "18"
     }
 
     buildFeatures {
@@ -119,7 +119,7 @@ composeCompiler {
 }
 
 dependencies {
-    implementation(libs.mediation.test.suite)
+
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)

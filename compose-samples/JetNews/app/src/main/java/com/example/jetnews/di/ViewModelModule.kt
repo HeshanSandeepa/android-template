@@ -4,7 +4,6 @@ package com.example.jetnews.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.jetnews.ui.home.HomeViewModel
-import com.example.jetnews.ui.interests.InterestsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,11 +18,6 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
-    abstract fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(InterestsViewModel::class)
-    abstract fun bindInterestsViewModel(viewModel: InterestsViewModel): ViewModel
+    abstract fun bindsMainViewModel(viewModel: HomeViewModel): ViewModel
 }
 
