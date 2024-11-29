@@ -18,6 +18,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -64,6 +65,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -114,6 +119,9 @@ dependencies {
     implementation(libs.androidx.compose.ui.googlefonts)
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.core)
