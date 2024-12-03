@@ -1,7 +1,9 @@
 package com.example.jetnews.di
 
 import com.example.jetnews.JetNewsApplication
+import com.example.jetnews.ui.MainActivity
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 // Definition of a Dagger component
@@ -16,7 +18,7 @@ interface AppComponent {
 //        fun create(@BindsInstance context: Context): AppComponent
 //    }
 //
-//    fun inject(activity: MainActivity)
+    //fun inject(activity: MainActivity)
 
     fun inject(application: JetNewsApplication)
 }

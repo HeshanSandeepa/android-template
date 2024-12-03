@@ -161,6 +161,9 @@ dependencies {
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+    implementation(libs.dagger.android)
+    implementation(libs.dagger.compiler)
+    kapt(libs.dagger.android.processor)
 
 
     androidTestImplementation(libs.junit)
