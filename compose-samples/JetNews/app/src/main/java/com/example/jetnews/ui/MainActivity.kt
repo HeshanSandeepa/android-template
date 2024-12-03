@@ -26,27 +26,30 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.jetnews.JetNewsApplication
 import com.example.jetnews.data.AppContainerImpl
 import com.example.jetnews.ui.home.HomeViewModel
+import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class MainActivity : ComponentActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    private lateinit var homeViewModel: HomeViewModel
+
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        (application as JetNewsApplication).appComponent.inject(this)
-
+        AndroidInjection.inject(this)
 
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
-       // val homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
         setContent {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-            JetNewsApp(/*homeViewModel*/ widthSizeClass)
+            JetNewsApp(homeViewModel ,widthSizeClass)
         }
     }
 }

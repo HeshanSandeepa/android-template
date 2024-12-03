@@ -38,7 +38,7 @@ gradle-versions = "0.51.0"
 #hilt = "2.51.1"
 #hiltExt = "1.2.0"
 # DI
-dagger = "2.40"
+dagger = "2.51.1"
 javax-inject = "1"
 
 horologist = "0.6.9"
@@ -152,7 +152,9 @@ googlemaps-maps = { module = "com.google.android.gms:play-services-maps", versio
 
 # DI
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-android = { module = "com.google.dagger:dagger-android-support", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+dagger-android-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "dagger" }
 
 #dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 #dagger-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
