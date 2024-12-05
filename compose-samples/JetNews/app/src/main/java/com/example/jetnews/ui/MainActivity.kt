@@ -17,20 +17,19 @@
 package com.example.jetnews.ui
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.lifecycle.ViewModelProvider
-import com.example.jetnews.JetNewsApplication
-import com.example.jetnews.data.AppContainerImpl
 import com.example.jetnews.ui.home.HomeViewModel
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity: DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -52,4 +51,6 @@ class MainActivity : DaggerAppCompatActivity() {
             JetNewsApp(homeViewModel ,widthSizeClass)
         }
     }
+
+
 }

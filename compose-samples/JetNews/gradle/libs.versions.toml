@@ -35,8 +35,8 @@ compileSdk = "34"
 coroutines = "1.8.1"
 google-maps = "19.0.0"
 gradle-versions = "0.51.0"
-#hilt = "2.51.1"
-#hiltExt = "1.2.0"
+hilt = "2.51.1"
+hiltExt = "1.2.0"
 # DI
 dagger = "2.51.1"
 javax-inject = "1"
@@ -145,10 +145,10 @@ core-jdk-desugaring = { module = "com.android.tools:desugar_jdk_libs", version.r
 google-android-material = { module = "com.google.android.material:material", version.ref = "material" }
 googlemaps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "maps-compose" }
 googlemaps-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "google-maps" }
-#hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-#hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
-#hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
-#hilt-ext-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltExt" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-ext-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltExt" }
 
 # DI
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
@@ -161,7 +161,7 @@ dagger-android-processor = { module = "com.google.dagger:dagger-android-processo
 #dagger-hilt-android-gradlePlugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
 #dagger-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "dagger" }
 #dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
-javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
+#javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
 
 horologist-audio-ui = { module = "com.google.android.horologist:horologist-audio-ui", version.ref = "horologist" }
 horologist-composables = { module = "com.google.android.horologist:horologist-composables", version.ref = "horologist" }
@@ -193,7 +193,7 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 gradle-versions = { id = "com.github.ben-manes.versions", version.ref = "gradle-versions" }
-#hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

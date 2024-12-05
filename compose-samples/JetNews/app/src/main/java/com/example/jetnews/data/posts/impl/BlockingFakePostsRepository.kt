@@ -28,12 +28,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Implementation of PostsRepository that returns a hardcoded list of
  * posts with resources synchronously.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
+@Singleton
 class  BlockingFakePostsRepository @Inject constructor(): PostsRepository {
 
     // for now, keep the favorites in memory
