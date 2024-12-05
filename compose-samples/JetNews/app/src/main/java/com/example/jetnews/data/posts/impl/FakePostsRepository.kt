@@ -28,11 +28,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Implementation of PostsRepository that returns a hardcoded list of
  * posts with resources after some delay in a background thread.
  */
+@Singleton
 class FakePostsRepository @Inject constructor(): PostsRepository {
 
     // for now, store these in memory

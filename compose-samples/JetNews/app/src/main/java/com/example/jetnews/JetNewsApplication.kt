@@ -17,28 +17,12 @@
 package com.example.jetnews
 
 import android.app.Application
-import com.example.jetnews.di.DaggerAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import javax.inject.Inject
+import dagger.hilt.android.HiltAndroidApp
 
 
-class JetNewsApplication : Application(), HasAndroidInjector {
+@HiltAndroidApp
+class JetNewsApplication : Application(){
     companion object {
         const val JET_NEWS_APP_URI = "https://developer.android.com/jetnews"
     }
-
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
-
-
-
-    override fun onCreate() {
-        super.onCreate()
-        DaggerAppComponent.builder().build().inject(this)
-
-    }
-    override fun androidInjector(): AndroidInjector<Any> = androidInjector
-
 }

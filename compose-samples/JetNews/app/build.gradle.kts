@@ -159,11 +159,14 @@ dependencies {
 
     implementation(libs.google.android.material)
 
-    implementation(libs.dagger)
+
     kapt(libs.dagger.compiler)
     implementation(libs.dagger.android)
     implementation(libs.dagger.compiler)
     kapt(libs.dagger.android.processor)
+
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.android)
 
 
     androidTestImplementation(libs.junit)
