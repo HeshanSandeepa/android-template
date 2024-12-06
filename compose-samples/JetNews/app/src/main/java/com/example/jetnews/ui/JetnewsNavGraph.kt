@@ -26,7 +26,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navDeepLink
 import com.example.jetnews.JetNewsApplication.Companion.JET_NEWS_APP_URI
-import com.example.jetnews.data.AppContainer
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import com.example.jetnews.ui.home.HomeRoute
 import com.example.jetnews.ui.home.HomeViewModel
 import com.example.jetnews.ui.interests.InterestsRoute
@@ -66,13 +67,13 @@ fun JetNewsNavGraph(
             //val homeViewModel = ViewModelProvider(MainActivity::class.java, viewModelFactory).get(HomeViewModel::class.java)
 
 
-
-
-            HomeRoute(
-                homeViewModel = homeViewModel,
-                isExpandedScreen = isExpandedScreen,
-                openDrawer = openDrawer,
-            )
+//             val homeViewModel =  ViewModelProvider(this).get(FooViewModel.class);
+//
+//            HomeRoute(
+//                homeViewModel = homeViewModel,
+//                isExpandedScreen = isExpandedScreen,
+//                openDrawer = openDrawer,
+//            )
         }
         composable(JetnewsDestinations.INTERESTS_ROUTE) {
 //            val interestsViewModel: InterestsViewModel = viewModel(

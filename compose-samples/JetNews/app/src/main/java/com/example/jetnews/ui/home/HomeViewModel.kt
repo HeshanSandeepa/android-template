@@ -25,6 +25,7 @@ import com.example.jetnews.data.posts.PostsRepository
 import com.example.jetnews.model.Post
 import com.example.jetnews.model.PostsFeed
 import com.example.jetnews.utils.ErrorMessage
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.UUID
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -120,6 +121,7 @@ private data class HomeViewModelState(
  * ViewModel that handles the business logic of the Home screen
  */
 
+@HiltViewModel
 class HomeViewModel @Inject constructor (
     private val postsRepository: PostsRepository,
     preSelectedPostId: String?

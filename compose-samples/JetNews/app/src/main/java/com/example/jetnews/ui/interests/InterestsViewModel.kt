@@ -23,6 +23,7 @@ import com.example.jetnews.data.interests.InterestSection
 import com.example.jetnews.data.interests.InterestsRepository
 import com.example.jetnews.data.interests.TopicSelection
 import com.example.jetnews.data.successOr
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -43,6 +44,7 @@ data class InterestsUiState(
     val loading: Boolean = false,
 )
 
+@HiltViewModel
 class InterestsViewModel @Inject constructor(
     private val interestsRepository: InterestsRepository
 ) : ViewModel() {
