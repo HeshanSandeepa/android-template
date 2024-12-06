@@ -4,6 +4,8 @@ package com.example.jetnews.di
 import com.example.jetnews.data.interests.InterestsRepository
 import com.example.jetnews.data.interests.impl.FakeInterestsRepository
 import com.example.jetnews.data.posts.PostsRepository
+import com.example.jetnews.data.posts.impl.BlockingFakePostsRepository
+import com.example.jetnews.data.posts.impl.FakePostsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -37,7 +39,7 @@ abstract class PostFakeModule {
     @FakePostRepository
     @Singleton
     @Binds
-    abstract fun bindDatabaseLogger(impl: FakePostRepository): PostsRepository
+    abstract fun bindDatabaseLogger(impl: FakePostsRepository): PostsRepository
 }
 
 @InstallIn(SingletonComponent::class)
@@ -47,7 +49,7 @@ abstract class PosBlockingModule {
     @FakePostRepository
     @Singleton
     @Binds
-    abstract fun bindInMemoryLogger(impl: BlockingPostRepository): PostsRepository
+    abstract fun bindInMemoryLogger(impl: BlockingFakePostsRepository): PostsRepository
 }
 
 @InstallIn(SingletonComponent::class)
