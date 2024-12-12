@@ -21,16 +21,18 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.kotlinAndroidKsp)
+    alias(libs.plugins.hiltAndroid)
 }
 
 android {
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk = 34
     namespace = "com.example.jetnews"
 
     defaultConfig {
         applicationId = "com.example.jetnews"
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
+        minSdk = 21
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -59,7 +61,7 @@ android {
             isMinifyEnabled = true
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro")
+                "proguard-rules.pro")
         }
     }
 
@@ -149,24 +151,23 @@ dependencies {
     implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
 
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.window)
-
     implementation(libs.google.android.material)
 
 
-    kapt(libs.dagger.compiler)
-    implementation(libs.dagger.android)
-    implementation(libs.dagger.compiler)
-    kapt(libs.dagger.android.processor)
+//    kapt(libs.hilt.compiler)
+//    implementation(libs.hilt.android)
 
-    kapt(libs.hilt.compiler)
     implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    kspTest(libs.hilt.compiler)
+    testImplementation(libs.hilt.android.testing)
 
 
     androidTestImplementation(libs.junit)

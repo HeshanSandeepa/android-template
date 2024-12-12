@@ -9,6 +9,8 @@ import com.example.jetnews.data.posts.impl.FakePostsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 import javax.inject.Singleton
@@ -26,38 +28,37 @@ import javax.inject.Singleton
 
 
 
-@Qualifier
-annotation class BlockingPostRepository
+//@Qualifier
+//annotation class BlockingPostRepository
+//
+//@Qualifier
+//annotation class FakePostRepository
 
-@Qualifier
-annotation class FakePostRepository
-
-@InstallIn(SingletonComponent::class)
 @Module
+@InstallIn(SingletonComponent::class)
 abstract class PostFakeModule {
 
-    @FakePostRepository
+   // @FakePostRepository
     @Singleton
     @Binds
-    abstract fun bindDatabaseLogger(impl: FakePostsRepository): PostsRepository
+    abstract fun bindFakePostsRepository(impl: FakePostsRepository): PostsRepository
 }
 
-@InstallIn(SingletonComponent::class)
 @Module
+@InstallIn(SingletonComponent::class)
 abstract class PosBlockingModule {
 
-    @FakePostRepository
+  //  @BlockingPostRepository
     @Singleton
     @Binds
-    abstract fun bindInMemoryLogger(impl: BlockingFakePostsRepository): PostsRepository
+    abstract fun bindBlockingFakePostsRepository(impl: BlockingFakePostsRepository): PostsRepository
 }
 
-@InstallIn(SingletonComponent::class)
 @Module
+@InstallIn(SingletonComponent::class)
 abstract class InterestFakeModule {
 
-    @FakePostRepository
     @Singleton
     @Binds
-    abstract fun bindInMemoryLogger(impl: FakeInterestsRepository): InterestsRepository
+    abstract fun bindFakeInterestsRepository(impl: FakeInterestsRepository): InterestsRepository
 }

@@ -34,7 +34,7 @@ import javax.inject.Singleton
  * Implementation of PostsRepository that returns a hardcoded list of
  * posts with resources synchronously.
  */
-@Singleton
+
 class  BlockingFakePostsRepository @Inject constructor(): PostsRepository {
 
     // for now, keep the favorites in memory

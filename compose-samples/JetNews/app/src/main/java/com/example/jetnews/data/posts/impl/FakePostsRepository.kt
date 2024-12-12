@@ -34,7 +34,7 @@ import javax.inject.Singleton
  * Implementation of PostsRepository that returns a hardcoded list of
  * posts with resources after some delay in a background thread.
  */
-@Singleton
+
 class FakePostsRepository @Inject constructor(): PostsRepository {
 
     // for now, store these in memory

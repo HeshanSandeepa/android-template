@@ -124,17 +124,4 @@ class InterestsViewModel @Inject constructor(
         }
     }
 
-    /**
-     * Factory for InterestsViewModel that takes PostsRepository as a dependency
-     */
-    companion object {
-        fun provideFactory(
-            interestsRepository: InterestsRepository,
-        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return InterestsViewModel(interestsRepository) as T
-            }
-        }
-    }
 }
