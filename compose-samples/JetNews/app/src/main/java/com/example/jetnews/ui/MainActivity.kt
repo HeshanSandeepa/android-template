@@ -17,40 +17,30 @@
 package com.example.jetnews.ui
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
-import androidx.lifecycle.ViewModelProvider
 import com.example.jetnews.ui.home.HomeViewModel
-import dagger.android.AndroidInjection
-import dagger.android.support.DaggerAppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity: DaggerAppCompatActivity() {
+class MainActivity: ComponentActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private lateinit var homeViewModel: HomeViewModel
 
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        AndroidInjection.inject(this)
 
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
-        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
         setContent {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-            JetNewsApp(homeViewModel ,widthSizeClass)
+            JetNewsApp(widthSizeClass = widthSizeClass)
         }
     }
-
-
 }

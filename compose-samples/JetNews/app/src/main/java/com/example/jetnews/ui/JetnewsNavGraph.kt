@@ -69,11 +69,11 @@ fun JetNewsNavGraph(
 
 //             val homeViewModel =  ViewModelProvider(this).get(FooViewModel.class);
 //
-//            HomeRoute(
-//                homeViewModel = homeViewModel,
-//                isExpandedScreen = isExpandedScreen,
-//                openDrawer = openDrawer,
-//            )
+            HomeRoute(
+                homeViewModel = homeViewModel,
+                isExpandedScreen = isExpandedScreen,
+                openDrawer = openDrawer,
+            )
         }
         composable(JetnewsDestinations.INTERESTS_ROUTE) {
 //            val interestsViewModel: InterestsViewModel = viewModel(

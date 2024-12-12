@@ -21,17 +21,17 @@ import com.example.jetnews.data.interests.InterestSection
 import com.example.jetnews.data.interests.InterestsRepository
 import com.example.jetnews.data.interests.TopicSelection
 import com.example.jetnews.utils.addOrRemove
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
  * Implementation of InterestRepository that returns a hardcoded list of
  * topics, people and publications synchronously.
- */@Singleton
-class FakeInterestsRepository : InterestsRepository {
+ */
+class FakeInterestsRepository @Inject constructor(): InterestsRepository {
 
     private val topics by lazy {
         listOf(

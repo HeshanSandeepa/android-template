@@ -124,14 +124,16 @@ private data class HomeViewModelState(
 @HiltViewModel
 class HomeViewModel @Inject constructor (
     private val postsRepository: PostsRepository,
-    preSelectedPostId: String?
+
 ) : ViewModel() {
+
+//    constructor (repository: PostsRepository,) : this(repository, )
 
     private val viewModelState = MutableStateFlow(
         HomeViewModelState(
             isLoading = true,
-            selectedPostId = preSelectedPostId,
-            isArticleOpen = preSelectedPostId != null
+            selectedPostId = null,
+            isArticleOpen = true
         )
     )
 
@@ -236,18 +238,4 @@ class HomeViewModel @Inject constructor (
         }
     }
 
-    /**
-     * Factory for HomeViewModel that takes PostsRepository as a dependency
-     */
-    companion object {
-        fun provideFactory(
-            postsRepository: PostsRepository,
-            preSelectedPostId: String? = null
-        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return HomeViewModel(postsRepository, preSelectedPostId) as T
-            }
-        }
-    }
 }
