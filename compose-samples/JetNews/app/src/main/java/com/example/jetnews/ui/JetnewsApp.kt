@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun JetNewsApp(
-    homeViewModel: HomeViewModel = hiltViewModel(),
+    homeViewModel: HomeViewModel,
     widthSizeClass: WindowWidthSizeClass,
 ) {
     JetnewsTheme {

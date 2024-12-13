@@ -20,7 +20,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.activity.viewModels
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import com.example.jetnews.ui.home.HomeViewModel
@@ -37,10 +37,11 @@ class MainActivity: ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
+        val viewModel: HomeViewModel by viewModels()
 
         setContent {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-            JetNewsApp(widthSizeClass = widthSizeClass)
+            JetNewsApp(homeViewModel = viewModel, widthSizeClass = widthSizeClass)
         }
     }
 }
