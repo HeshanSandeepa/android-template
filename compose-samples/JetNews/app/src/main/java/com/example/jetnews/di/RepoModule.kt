@@ -38,27 +38,24 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class PostFakeModule {
 
-   // @FakePostRepository
-    @Singleton
+
     @Binds
-    abstract fun bindFakePostsRepository(impl: FakePostsRepository): PostsRepository
+    abstract fun bindFakePostsRepository(postsRepository: FakePostsRepository): PostsRepository
 }
 
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class PosBlockingModule {
-
-  //  @BlockingPostRepository
-    @Singleton
-    @Binds
-    abstract fun bindBlockingFakePostsRepository(impl: BlockingFakePostsRepository): PostsRepository
-}
+//@Module
+//@InstallIn(SingletonComponent::class)
+//abstract class PosBlockingModule {
+//
+//    @BlockingPostRepository
+//    @Binds
+//    abstract fun bindBlockingFakePostsRepository(impl: BlockingFakePostsRepository): PostsRepository
+//}
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class InterestFakeModule {
 
-    @Singleton
     @Binds
     abstract fun bindFakeInterestsRepository(impl: FakeInterestsRepository): InterestsRepository
 }
