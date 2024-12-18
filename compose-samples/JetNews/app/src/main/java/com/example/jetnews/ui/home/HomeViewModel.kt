@@ -125,10 +125,7 @@ private data class HomeViewModelState(
 class HomeViewModel @Inject constructor (
     private val postsRepository: PostsRepository,
 
-) : ViewModel() {
-
-//    constructor (repository: PostsRepository,) : this(repository, )
-
+    ) : ViewModel() {
     private val viewModelState = MutableStateFlow(
         HomeViewModelState(
             isLoading = true,
@@ -237,5 +234,4 @@ class HomeViewModel @Inject constructor (
             it.copy(searchInput = searchInput)
         }
     }
-
 }

@@ -18,21 +18,15 @@ package com.example.jetnews.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navDeepLink
 import com.example.jetnews.JetNewsApplication.Companion.JET_NEWS_APP_URI
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
 import com.example.jetnews.ui.home.HomeRoute
-import com.example.jetnews.ui.home.HomeViewModel
 import com.example.jetnews.ui.interests.InterestsRoute
-import com.example.jetnews.ui.interests.InterestsViewModel
-import javax.inject.Inject
 
 const val POST_ID = "postId"
 
@@ -40,16 +34,12 @@ const val POST_ID = "postId"
 
 @Composable
 fun JetNewsNavGraph(
-    homeViewModel: HomeViewModel,
     isExpandedScreen: Boolean,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     openDrawer: () -> Unit = {},
     startDestination: String = JetnewsDestinations.HOME_ROUTE,
 ) {
-
-
-
     NavHost(
         navController = navController,
         startDestination = startDestination,
@@ -63,28 +53,19 @@ fun JetNewsNavGraph(
                         "$JET_NEWS_APP_URI/${JetnewsDestinations.HOME_ROUTE}?$POST_ID={$POST_ID}"
                 }
             )
-        ) { navBackStackEntry ->
-            //val homeViewModel = ViewModelProvider(MainActivity::class.java, viewModelFactory).get(HomeViewModel::class.java)
-
-
-//             val homeViewModel =  ViewModelProvider(this).get(FooViewModel.class);
-//
+        ) {
             HomeRoute(
-                homeViewModel = homeViewModel,
+                homeViewModel = hiltViewModel(),
                 isExpandedScreen = isExpandedScreen,
                 openDrawer = openDrawer,
             )
         }
         composable(JetnewsDestinations.INTERESTS_ROUTE) {
-//            val interestsViewModel: InterestsViewModel = viewModel(
-//                factory = InterestsViewModel.provideFactory(appContainer.interestsRepository)
-//            )
-            //val interestsViewModel = viewModelFactory.create(InterestsViewModel::class.java)
-//            InterestsRoute(
-//                interestsViewModel = interestsViewModel,
-//                isExpandedScreen = isExpandedScreen,
-//                openDrawer = openDrawer
-//            )
+            InterestsRoute(
+                interestsViewModel = hiltViewModel(),
+                isExpandedScreen = isExpandedScreen,
+                openDrawer = openDrawer
+            )
         }
     }
 }

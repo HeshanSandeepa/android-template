@@ -51,10 +51,6 @@ fun HomeRoute(
 ) {
     // UiState of the HomeScreen
     val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
-
-
-
-
     HomeRoute(
         uiState = uiState,
         isExpandedScreen = isExpandedScreen,
